@@ -16,7 +16,7 @@ df3 = df1.groupby(['user_id', 'date', 'action'])['timestamp'].first().reset_inde
 #join df2 and df3, then calculate time diff within the sameday
 df4 = pd.merge(df2, df3, how = 'outer', on =['user_id', 'date'])
 df4['diff'] = df4['timestamp_y'] - df4['timestamp_x']
-df4
+#df4.dropna(subset = ['diff'])
 
 # groupby user_id and calculate the avg session time
-df4.dropna(subset = ['diff']).groupby('user_id')['diff'].apply(np.mean).reset_index()
+df4.groupby('user_id')['diff'].apply(np.mean).reset_index().dropna()
