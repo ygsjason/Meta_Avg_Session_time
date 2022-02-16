@@ -19,4 +19,4 @@ df4['diff'] = df4['timestamp_y'] - df4['timestamp_x']
 df4
 
 # groupby user_id and calculate the avg session time
-df4.dropna().groupby('user_id')['diff'].apply(np.mean).reset_index()
+df4.dropna(subset = ['diff']).groupby('user_id')['diff'].apply(np.mean).reset_index()
